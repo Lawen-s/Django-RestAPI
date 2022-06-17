@@ -5,7 +5,7 @@ class Blog(models.Model):
     name = models.CharField(max_length=50)
 
 class Category(models.Model):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='category')
     name = models.CharField(max_length=50)
 
 class Post(models.Model):
@@ -13,4 +13,4 @@ class Post(models.Model):
     content = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)    
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='post')
